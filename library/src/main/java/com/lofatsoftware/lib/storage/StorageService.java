@@ -1,8 +1,23 @@
 package com.lofatsoftware.lib.storage;
 
+import android.content.Context;
+
+import java.util.List;
+
 public class StorageService {
 
-    public static final String test() {
-        return "Storage lib here. Everything works like a charm";
+    private Context context;
+
+    public StorageService(Context context) {
+        this.context = context;
     }
+
+    public List<Storage> getAvailableStorages() {
+
+
+
+        return null;
+    }
+
+
 }
