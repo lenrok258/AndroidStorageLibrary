@@ -8,13 +8,13 @@ public class ProcMountEntry {
     String device;
     String mountPoint;
     String fileSystemType;
-    String options;
+    String attributes;
 
-    ProcMountEntry( String device, String mountPoint, String fileSystemType, String options ) {
+    ProcMountEntry( String device, String mountPoint, String fileSystemType, String attributes ) {
         this.device = device;
         this.mountPoint = mountPoint;
         this.fileSystemType = fileSystemType;
-        this.options = options;
+        this.attributes = attributes;
     }
 
     static ProcMountEntry getInstance( String lineToParse ) {
@@ -33,6 +33,6 @@ public class ProcMountEntry {
         return device + " "
                 + mountPoint + " "
                 + fileSystemType + " "
-                + mountPoint;
+                + attributes;
     }
 }

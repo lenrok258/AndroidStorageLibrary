@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.lofatsoftware.lib.storage.internals.device.ProcMountEntry;
@@ -13,7 +15,7 @@ import com.lofatsoftware.lib.storage.testapplication.R;
 
 import java.util.List;
 
-public class ProcMountsFragment extends Fragment {
+public class ProcMountsFragment extends MainActivityFragment {
 
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container,
@@ -25,14 +27,22 @@ public class ProcMountsFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public String getTitle() {
+        return "/proc/mounts";
+    }
+
+    /* Private ******************************************* */
+
     private String getTextToDisplay() {
         ProcMounts procMounts = new ProcMounts();
         List<ProcMountEntry> procMountEntries = procMounts.getProcMountEntries();
-        String result = "";
+        StringBuilder resultBuilder = new StringBuilder();
         for ( ProcMountEntry procMountEntry : procMountEntries ) {
-            result += procMountEntries + "\n";
+            resultBuilder
+                    .append( procMountEntry )
+                    .append( "\n" );
         }
-        return result;
+        return resultBuilder.toString();
     }
-
 }

@@ -18,7 +18,7 @@ public class ExternalStorageDirectoryInput implements SearchInput {
         String mountPoint = externalStorageDirectory.getAbsolutePath();
         String device = new ProcMounts().getDeviceByMountPoint(mountPoint);
 
-        Storage storage = new Storage(mountPoint, device);
+        Storage storage = new Storage(device, mountPoint);
         return Collections.singletonList( storage );
     }
 }

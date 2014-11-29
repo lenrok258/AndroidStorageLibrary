@@ -26,10 +26,10 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     SectionsPagerAdapter sectionsPagerAdapter;
     ViewPager viewPager;
 
-    List<Fragment> fragments = Arrays.asList(
-            (Fragment) new ProcMountsFragment(),
-            (Fragment) new ProcMountsFragment(),
-            (Fragment) new ProcMountsFragment()
+    List<MainActivityFragment> fragments = Arrays.asList(
+            (MainActivityFragment) new StoragesFragment(),
+            (MainActivityFragment) new ProcMountsFragment(),
+            (MainActivityFragment) new AboutFragment()
     );
 
     @Override
@@ -91,12 +91,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 
         @Override
         public CharSequence getPageTitle( int position ) {
-            List<String> tabsTitles = Arrays.<String>asList(
-                    "Storages",
-                    "/proc/mounts",
-                    "About"
-            );
-            return tabsTitles.get( position );
+            return fragments.get( position ).getTitle();
         }
     }
 
