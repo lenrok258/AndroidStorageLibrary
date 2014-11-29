@@ -2,6 +2,8 @@ package com.lofatsoftware.lib.storage.internals.search;
 
 import com.lofatsoftware.lib.storage.Storage;
 import com.lofatsoftware.lib.storage.internals.device.VendorModelSystem;
+import com.lofatsoftware.lib.storage.internals.search.strategy.SearchStrategy;
+import com.lofatsoftware.lib.storage.internals.search.strategy.SearchStrategyRegistry;
 
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class SearchService {
         String model = VendorModelSystem.getModel();
         String systemApi = VendorModelSystem.getSystemApi();
 
-        // get device vendor + model + android version
+        SearchStrategy searchStrategy = SearchStrategyRegistry.getSearchStrategy( vendor, model, systemApi );
 
         // and SearchStrategyRegistry for proper SearchStrategy
 
