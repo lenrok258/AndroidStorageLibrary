@@ -16,7 +16,7 @@ public class VendorModelSystem {
         return Build.MODEL;
     }
 
-    public static final String getSystemApi() {
-        return Integer.toString(Build.VERSION.SDK_INT);
+    public static final int getSystemApi() {
+        return Build.VERSION.SDK_INT;
     }
 }

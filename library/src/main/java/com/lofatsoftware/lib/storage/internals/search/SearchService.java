@@ -9,13 +9,15 @@ import java.util.List;
 
 public class SearchService {
 
+    private SearchStrategyRegistry searchStrategyRegistry = new SearchStrategyRegistry();
+
     public List<Storage> search() {
 
         String vendor = VendorModelSystem.getVendor();
         String model = VendorModelSystem.getModel();
-        String systemApi = VendorModelSystem.getSystemApi();
+        int systemApi = VendorModelSystem.getSystemApi();
 
-        SearchStrategy searchStrategy = SearchStrategyRegistry.getSearchStrategy( vendor, model, systemApi );
+        SearchStrategy searchStrategy = searchStrategyRegistry.getSearchStrategy( vendor, model, systemApi );
 
         // and SearchStrategyRegistry for proper SearchStrategy
 

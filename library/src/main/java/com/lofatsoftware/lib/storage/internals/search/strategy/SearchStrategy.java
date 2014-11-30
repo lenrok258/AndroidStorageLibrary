@@ -8,9 +8,9 @@ import java.util.List;
 public interface SearchStrategy {
 
     String ANY_VENDOR = "";
-    List<String> ANY_MODEL = Collections.EMPTY_LIST;
+    List<String> ANY_MODEL = Collections.singletonList( "" );
     Integer NO_MIN_API = 0;
-    Integer NO_MAX_API = 0;
+    Integer NO_MAX_API = Integer.MAX_VALUE;
 
     /**
      * Returns vendor for which this SearchStrategy should be used.
