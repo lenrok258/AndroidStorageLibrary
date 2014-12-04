@@ -20,7 +20,9 @@ import android.view.ViewGroup;
 
 import com.lofatsoftware.lib.storage.testapplication.R;
 
+import org.androidannotations.annotations.EActivity;
 
+@EActivity
 public class MainActivity extends Activity implements ActionBar.TabListener {
 
     SectionsPagerAdapter sectionsPagerAdapter;

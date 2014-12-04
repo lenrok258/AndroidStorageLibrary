@@ -21,7 +21,7 @@ public class StoragesFragment extends MainActivityFragment {
 
         View rootView = inflater.inflate( R.layout.fragment_storages, container, false );
         TextView textView = (TextView) rootView.findViewById( R.id.storages_text );
-        textView.setText( getTextToDisplay() );
+        //textView.setText( getTextToDisplay() );
         return rootView;
     }
 

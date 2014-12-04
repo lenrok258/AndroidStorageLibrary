@@ -1,4 +1,32 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.13.2'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4+'
+    }
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+dependencies {
+    apt "org.androidannotations:androidannotations:3.2"
+    compile "org.androidannotations:androidannotations-api:3.2"
+}
+
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0].processResources.manifestFile
+        resourcePackageName 'com.lofatsoftware.lib.storage.testapplication'
+    }
+}
 
 android {
     compileSdkVersion 21
