@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.13.2'
+        classpath 'com.android.tools.build:gradle:1.0.0-rc2'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4+'
     }
 }
@@ -33,7 +33,6 @@ android {
     buildToolsVersion "21.1.1"
 
     defaultConfig {
-        applicationId "com.lofatsoftware.lib.storage"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1
@@ -41,7 +40,7 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

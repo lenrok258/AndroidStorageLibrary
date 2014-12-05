@@ -13,23 +13,26 @@ import com.lofatsoftware.lib.storage.internals.device.ProcMountEntry;
 import com.lofatsoftware.lib.storage.internals.device.ProcMounts;
 import com.lofatsoftware.lib.storage.testapplication.R;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.List;
 
+@EFragment( R.layout.fragment_proc_mounts )
 public class ProcMountsFragment extends MainActivityFragment {
 
-    @Override
-    public View onCreateView( LayoutInflater inflater, ViewGroup container,
-                              Bundle savedInstanceState ) {
-
-        View rootView = inflater.inflate( R.layout.fragment_proc_mounts, container, false );
-        TextView textView = (TextView) rootView.findViewById( R.id.procmounts_text );
-        textView.setText( getTextToDisplay() );
-        return rootView;
-    }
+    @ViewById( R.id.procmounts_text )
+    TextView textView;
 
     @Override
     public String getTitle() {
         return "/proc/mounts";
+    }
+
+    @AfterViews
+    void setupViews() {
+        textView.setText( getTextToDisplay() );
     }
 
     /* Private ******************************************* */

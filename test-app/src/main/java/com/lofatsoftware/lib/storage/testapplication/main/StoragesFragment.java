@@ -11,19 +11,12 @@ import com.lofatsoftware.lib.storage.Storage;
 import com.lofatsoftware.lib.storage.StorageService;
 import com.lofatsoftware.lib.storage.testapplication.R;
 
+import org.androidannotations.annotations.EFragment;
+
 import java.util.List;
 
+@EFragment(R.layout.fragment_storages)
 public class StoragesFragment extends MainActivityFragment {
-
-    @Override
-    public View onCreateView( LayoutInflater inflater, ViewGroup container,
-                              Bundle savedInstanceState ) {
-
-        View rootView = inflater.inflate( R.layout.fragment_storages, container, false );
-        TextView textView = (TextView) rootView.findViewById( R.id.storages_text );
-        //textView.setText( getTextToDisplay() );
-        return rootView;
-    }
 
     @Override
     public String getTitle() {

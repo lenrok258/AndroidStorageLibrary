@@ -20,31 +20,32 @@ import android.view.ViewGroup;
 
 import com.lofatsoftware.lib.storage.testapplication.R;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.EView;
+import org.androidannotations.annotations.ViewById;
 
-@EActivity
+@EActivity(R.layout.activity_test_me_tabs)
 public class MainActivity extends Activity implements ActionBar.TabListener {
 
-    SectionsPagerAdapter sectionsPagerAdapter;
+    @ViewById( R.id.pager )
     ViewPager viewPager;
 
+    SectionsPagerAdapter sectionsPagerAdapter;
+
     List<MainActivityFragment> fragments = Arrays.asList(
-            (MainActivityFragment) new StoragesFragment(),
-            (MainActivityFragment) new ProcMountsFragment(),
-            (MainActivityFragment) new AboutFragment()
+            (MainActivityFragment) new StoragesFragment_(),
+            (MainActivityFragment) new ProcMountsFragment_(),
+            (MainActivityFragment) new AboutFragment_()
     );
 
-    @Override
-    protected void onCreate( Bundle savedInstanceState ) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_test_me_tabs );
-
+    @AfterViews
+    void setupViews() {
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode( ActionBar.NAVIGATION_MODE_TABS );
 
         sectionsPagerAdapter = new SectionsPagerAdapter( getFragmentManager() );
 
-        viewPager = (ViewPager) findViewById( R.id.pager );
         viewPager.setAdapter( sectionsPagerAdapter );
         viewPager.setOnPageChangeListener( new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -60,7 +61,6 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                             .setTabListener( this ) );
         }
     }
-
 
     @Override
     public void onTabSelected( ActionBar.Tab tab, FragmentTransaction fragmentTransaction ) {
