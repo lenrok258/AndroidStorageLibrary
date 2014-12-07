@@ -4,9 +4,12 @@ import com.lofatsoftware.lib.storage.internals.search.input.ExternalStorageDirec
 import com.lofatsoftware.lib.storage.internals.search.input.SearchInput;
 import com.lofatsoftware.lib.storage.internals.search.strategy.SearchStrategy;
 
+import org.androidannotations.annotations.EBean;
+
 import java.util.Arrays;
 import java.util.List;
 
+@EBean
 public class Any_any_any_any implements SearchStrategy {
 
     private static final String vendor = SearchStrategy.ANY_VENDOR;

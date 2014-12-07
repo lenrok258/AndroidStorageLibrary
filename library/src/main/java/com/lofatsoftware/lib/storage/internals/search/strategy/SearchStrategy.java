@@ -14,28 +14,28 @@ public interface SearchStrategy {
 
     /**
      * Returns vendor for which this SearchStrategy should be used.
-     * If SearchStrategy should be used for any vendor, SearchStrategy.ANY_VENDOR should be returned.
+     * If SearchStrategy is designed for any vendor, SearchStrategy.ANY_VENDOR should be returned.
      * @return
      */
     String getVendor();
 
     /**
-     * Returns models list names for which this SearchStrategy should be used.
-     * If SearchStrategy should be used for any model, SearchStrategy.ANY_MODEL should be returned.
+     * Returns list of model's names for which this SearchStrategy should be used.
+     * If SearchStrategy is designed for any model, SearchStrategy.ANY_MODEL should be returned.
      * @return
      */
     List<String> getModels();
 
     /**
      * Returns min Android API version for which this SearchStrategy should be used.
-     * If SearchStrategy is should be used for any Android API version, SearchStrategy.NO_MIN_API should be returned.
+     * If SearchStrategy is designed for any Android API version, SearchStrategy.NO_MIN_API should be returned.
      * @return
      */
     Integer getMinSystemApi();
 
     /**
      * Returns max Android API version for which this SearchStrategy should be used.
-     * If SearchStrategy is should be used for any Android API version, SearchStrategy.NO_MAX_API should be returned.
+     * If SearchStrategy is designed for any Android API version, SearchStrategy.NO_MAX_API should be returned.
      * @return
      */
     Integer getMaxSystemApi();

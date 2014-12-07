@@ -1,6 +1,10 @@
 package com.lofatsoftware.lib.storage.internals.search.strategy;
 
+import com.lofatsoftware.lib.storage.internals.device.VendorModelSystem;
 import com.lofatsoftware.lib.storage.internals.search.strategy.impl.SearchStrategyImplIndex;
+
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.EBean;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -11,33 +15,39 @@ import java.util.Map;
 
 import static com.lofatsoftware.lib.storage.internals.search.strategy.SearchStrategy.*;
 
+@EBean
 public class SearchStrategyRegistry {
+
+    @Bean
+    VendorModelSystem vendorModelSystem;
+
+    @Bean
+    SearchStrategyImplIndex searchStrategyImplIndex;
 
     private final String KEY_TEMPLATE = "{0}|{1}";
     private final Map<String, List<SearchStrategy>> registry = new HashMap<>();
-    private final SearchStrategyImplIndex searchStrategyImplIndex;
 
     public SearchStrategyRegistry() {
         initializeRegistry();
-        searchStrategyImplIndex = new SearchStrategyImplIndex();
     }
 
-    public SearchStrategy getSearchStrategy(
-            String requestedVendor,
-            String requestedModel,
-            int requestedApiVersion ) {
+    public SearchStrategy getSearchStrategy() {
 
-        SearchStrategy searchStrategy = computeBestStrategy( requestedVendor, requestedModel, requestedApiVersion );
+        String vendor = vendorModelSystem.getVendor();
+        String model = vendorModelSystem.getModel();
+        int systemApi = vendorModelSystem.getSystemApi();
+
+        SearchStrategy searchStrategy = computeBestStrategy( vendor, model, systemApi );
         if ( searchStrategy != null ) {
             return searchStrategy;
         }
 
-        searchStrategy = computeBestStrategy( requestedVendor, ANY_MODEL.get( 0 ), requestedApiVersion );
+        searchStrategy = computeBestStrategy( vendor, ANY_MODEL.get( 0 ), systemApi );
         if ( searchStrategy != null ) {
             return searchStrategy;
         }
 
-        searchStrategy = computeBestStrategy( ANY_VENDOR, ANY_MODEL.get( 0 ), requestedApiVersion );
+        searchStrategy = computeBestStrategy( ANY_VENDOR, ANY_MODEL.get( 0 ), systemApi );
         if ( searchStrategy != null ) {
             return searchStrategy;
         }
@@ -50,7 +60,7 @@ public class SearchStrategyRegistry {
      */
 
     private void initializeRegistry() {
-        Collection<SearchStrategy> searchStrategies = searchStrategyImplIndex.get();
+      /*  Collection<SearchStrategy> searchStrategies = searchStrategyImplIndex.get();
         for ( SearchStrategy searchStrategy : searchStrategies ) {
             for ( String model : searchStrategy.getModels() ) {
                 String key = prepareKey(
@@ -62,7 +72,7 @@ public class SearchStrategyRegistry {
                 }
                 registry.get( key ).add( searchStrategy );
             }
-        }
+        }*/
     }
 
     private String prepareKey( String vendor, String model ) {

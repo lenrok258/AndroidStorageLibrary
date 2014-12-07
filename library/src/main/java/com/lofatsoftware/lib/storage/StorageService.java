@@ -4,30 +4,23 @@ import android.content.Context;
 
 import com.lofatsoftware.lib.storage.internals.search.SearchService;
 
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.EBean;
+import org.androidannotations.annotations.RootContext;
+
 import java.util.Arrays;
 import java.util.List;
 
+import static org.androidannotations.annotations.EBean.*;
+
+@EBean
 public class StorageService {
 
-    private static StorageService singleInstance;
+    @Bean
+    SearchService searchService;
 
-    private final Context context;
-    private final SearchService searchService;
-
-    private StorageService( Context context ) {
-        this.context = context;
-        searchService = new SearchService();
-        if ( singleInstance != null ) {
-            throw new IllegalStateException( "Don't use constructor. Use static method getInstance()" );
-        }
-    }
-
-    public static StorageService getInstance( final Context context ) {
-        if ( singleInstance == null ) {
-            singleInstance = new StorageService( context );
-        }
-        return singleInstance;
-    }
+    @RootContext
+    Context context;
 
     public List<Storage> getAvailableStorages() {
 

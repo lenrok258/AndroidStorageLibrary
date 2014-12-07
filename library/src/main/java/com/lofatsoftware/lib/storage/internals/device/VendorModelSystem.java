@@ -2,21 +2,22 @@ package com.lofatsoftware.lib.storage.internals.device;
 
 import android.os.Build;
 
+import org.androidannotations.annotations.EBean;
+
+import static org.androidannotations.annotations.EBean.Scope.Singleton;
+
+@EBean
 public class VendorModelSystem {
 
-    private VendorModelSystem() {
-        throw new IllegalStateException("Don't instantiate. Use static methods.");
-    }
-
-    public static final String getVendor( ) {
+    public String getVendor( ) {
         return Build.MANUFACTURER;
     }
 
-    public static final String getModel() {
+    public String getModel() {
         return Build.MODEL;
     }
 
-    public static final int getSystemApi() {
+    public int getSystemApi() {
         return Build.VERSION.SDK_INT;
     }
 }

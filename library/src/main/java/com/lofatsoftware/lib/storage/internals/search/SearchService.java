@@ -5,21 +5,23 @@ import com.lofatsoftware.lib.storage.internals.device.VendorModelSystem;
 import com.lofatsoftware.lib.storage.internals.search.strategy.SearchStrategy;
 import com.lofatsoftware.lib.storage.internals.search.strategy.SearchStrategyRegistry;
 
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.EBean;
+
 import java.util.List;
 
+@EBean
 public class SearchService {
 
-    private SearchStrategyRegistry searchStrategyRegistry = new SearchStrategyRegistry();
+    @Bean
+    SearchStrategyRegistry searchStrategyRegistry;
+
+    @Bean
+    VendorModelSystem vendorModelSystem;
 
     public List<Storage> search() {
 
-        String vendor = VendorModelSystem.getVendor();
-        String model = VendorModelSystem.getModel();
-        int systemApi = VendorModelSystem.getSystemApi();
-
-        SearchStrategy searchStrategy = searchStrategyRegistry.getSearchStrategy( vendor, model, systemApi );
-
-        // and SearchStrategyRegistry for proper SearchStrategy
+        SearchStrategy searchStrategy = searchStrategyRegistry.getSearchStrategy( );
 
         // user Search Strategy to obtain list of Storages
 
