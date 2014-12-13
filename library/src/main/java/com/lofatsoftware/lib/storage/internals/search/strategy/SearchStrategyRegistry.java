@@ -3,6 +3,7 @@ package com.lofatsoftware.lib.storage.internals.search.strategy;
 import com.lofatsoftware.lib.storage.internals.device.VendorModelSystem;
 import com.lofatsoftware.lib.storage.internals.search.strategy.impl.SearchStrategyImplIndex;
 
+import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
 
@@ -27,7 +28,8 @@ public class SearchStrategyRegistry {
     private final String KEY_TEMPLATE = "{0}|{1}";
     private final Map<String, List<SearchStrategy>> registry = new HashMap<>();
 
-    public SearchStrategyRegistry() {
+    @AfterInject
+    void setup() {
         initializeRegistry();
     }
 
@@ -60,7 +62,7 @@ public class SearchStrategyRegistry {
      */
 
     private void initializeRegistry() {
-      /*  Collection<SearchStrategy> searchStrategies = searchStrategyImplIndex.get();
+        Collection<SearchStrategy> searchStrategies = searchStrategyImplIndex.get();
         for ( SearchStrategy searchStrategy : searchStrategies ) {
             for ( String model : searchStrategy.getModels() ) {
                 String key = prepareKey(
@@ -72,7 +74,7 @@ public class SearchStrategyRegistry {
                 }
                 registry.get( key ).add( searchStrategy );
             }
-        }*/
+        }
     }
 
     private String prepareKey( String vendor, String model ) {
