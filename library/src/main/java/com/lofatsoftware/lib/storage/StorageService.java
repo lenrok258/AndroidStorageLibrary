@@ -28,17 +28,6 @@ public class StorageService {
 
         // validate if storages are valid (ValidationService)
 
-        search = createMockStorages();
         return search;
     }
-
-    private List<Storage> createMockStorages( ) {
-        return Arrays.asList(
-                new Storage( "/super_drive", "/home/kornel" ),
-                new Storage( "/ssd_so_fast_so_big", "/home/lofat" ),
-                new Storage( "/sdcard", "/sdcard" )
-        );
-    }
-
-
 }

@@ -2,6 +2,8 @@ package com.lofatsoftware.lib.storage.internals.device;
 
 import android.util.Log;
 
+import org.androidannotations.annotations.EBean;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -29,6 +31,11 @@ public class ProcMounts {
     }
 
     public String getDeviceByMountPoint( String mountPoint ) {
+        for (ProcMountEntry procMountEntry : procMountEntries) {
+            if ( procMountEntry.mountPoint.equalsIgnoreCase(mountPoint) ) {
+                return procMountEntry.device;
+            }
+        }
         return null;
     }
 

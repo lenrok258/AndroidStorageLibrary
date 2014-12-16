@@ -1,15 +1,9 @@
 package com.lofatsoftware.lib.storage.testapplication.main;
 
-import android.app.Fragment;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lofatsoftware.lib.storage.Storage;
 import com.lofatsoftware.lib.storage.StorageService;
-import com.lofatsoftware.lib.storage.StorageService_;
 import com.lofatsoftware.lib.storage.testapplication.R;
 
 import org.androidannotations.annotations.AfterViews;
@@ -35,7 +29,7 @@ public class StoragesFragment extends MainActivityFragment {
 
     @AfterViews
     void setupViews() {
-        textView.setText( getTextToDisplay() );
+        textView.setText(getTextToDisplay());
     }
 
     /* Private ******************************************* */
@@ -45,10 +39,10 @@ public class StoragesFragment extends MainActivityFragment {
         List<Storage> availableStorages = storageService.getAvailableStorages();
 
         StringBuilder resultBuilder = new StringBuilder();
-        for ( Storage availableStorage : availableStorages ) {
+        for (Storage availableStorage : availableStorages) {
             resultBuilder
-                    .append( availableStorage )
-                    .append( "\n" );
+                    .append(availableStorage)
+                    .append("\n");
         }
 
         return resultBuilder.toString();

@@ -1,12 +1,5 @@
 package com.lofatsoftware.lib.storage.testapplication.main;
 
-import android.app.Fragment;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.lofatsoftware.lib.storage.internals.device.ProcMountEntry;
@@ -19,20 +12,23 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
 
-@EFragment( R.layout.fragment_proc_mounts )
+@EFragment(R.layout.fragment_proc_mounts)
 public class ProcMountsFragment extends MainActivityFragment {
 
-    @ViewById( R.id.procmounts_text )
-    TextView textView;
+    private static final String SEPARATOR = " | ";
 
     @Override
     public String getTitle() {
         return "/proc/mounts";
     }
 
+    @ViewById(R.id.proc_mounts_text)
+    TextView textView;
+
     @AfterViews
     void setupViews() {
-        textView.setText( getTextToDisplay() );
+        String textToDisplay = getTextToDisplay();
+        textView.setText(textToDisplay);
     }
 
     /* Private ******************************************* */
@@ -40,12 +36,14 @@ public class ProcMountsFragment extends MainActivityFragment {
     private String getTextToDisplay() {
         ProcMounts procMounts = new ProcMounts();
         List<ProcMountEntry> procMountEntries = procMounts.getProcMountEntries();
-        StringBuilder resultBuilder = new StringBuilder();
-        for ( ProcMountEntry procMountEntry : procMountEntries ) {
-            resultBuilder
-                    .append( procMountEntry )
-                    .append( "\n" );
+        StringBuilder textToDisplay = new StringBuilder();
+        for (ProcMountEntry entry : procMountEntries) {
+           textToDisplay
+                   .append(entry.getDevice() + SEPARATOR)
+                   .append(entry.getMountPoint() + SEPARATOR)
+                   .append(entry.getFileSystemType() + SEPARATOR)
+                   .append("\n\n");
         }
-        return resultBuilder.toString();
+        return textToDisplay.toString();
     }
 }

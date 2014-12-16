@@ -12,7 +12,7 @@ import java.util.List;
 public class ExternalStorageDirectoryInput implements SearchInput {
 
     @Override
-    public List<Storage> getSearchInputs() {
+    public List<Storage> getStorages() {
 
         File externalStorageDirectory = Environment.getExternalStorageDirectory();
         String mountPoint = externalStorageDirectory.getAbsolutePath();

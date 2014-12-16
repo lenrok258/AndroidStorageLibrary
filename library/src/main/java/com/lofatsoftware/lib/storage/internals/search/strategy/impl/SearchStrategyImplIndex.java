@@ -19,12 +19,16 @@ public class SearchStrategyImplIndex {
     @Bean( Any_any_14_18.class )
     SearchStrategy any_any_14_18;
 
+    @Bean( Any_any_19_19.class )
+    SearchStrategy Any_any_19_19;
+
     private Collection<SearchStrategy> index = new ArrayList<>();
 
     @AfterInject
     void setup() {
         index.add( any_any_any_any );
         index.add( any_any_14_18 );
+        index.add( Any_any_19_19 );
     }
 
     public Collection<SearchStrategy> get() {

@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface SearchInput {
 
-    List<Storage> getSearchInputs();
+    List<Storage> getStorages();
 
 }

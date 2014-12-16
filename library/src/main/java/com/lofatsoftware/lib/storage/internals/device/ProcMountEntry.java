@@ -28,11 +28,20 @@ public class ProcMountEntry {
         return new ProcMountEntry( tiles[0], tiles[1], tiles[2], tiles[3] );
     }
 
-    @Override
-    public String toString() {
-        return device + " "
-                + mountPoint + " "
-                + fileSystemType + " "
-                + attributes;
+    public String getDevice() {
+        return device;
     }
+
+    public String getMountPoint() {
+        return mountPoint;
+    }
+
+    public String getFileSystemType() {
+        return fileSystemType;
+    }
+
+    public String getAttributes() {
+        return attributes;
+    }
+
 }
